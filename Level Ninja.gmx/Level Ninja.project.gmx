@@ -9,7 +9,6 @@
     <sprite>sprites\spr_ninja_idle</sprite>
     <sprite>sprites\spr_ninja_running</sprite>
     <sprite>sprites\spr_enemy1</sprite>
-    <sprite>sprites\spr_enemy5</sprite>
     <sprite>sprites\spr_enemy2</sprite>
   </sprites>
   <backgrounds name="background">
@@ -19,6 +18,7 @@
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_ninja</object>
+    <object>objects\obj_ctrl</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
