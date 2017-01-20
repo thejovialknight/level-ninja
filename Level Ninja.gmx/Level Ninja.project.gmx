@@ -25,7 +25,6 @@
     <object>objects\object4</object>
     <object>objects\obj_solid</object>
   </objects>
-  <rooms name="rooms"/>
   <help>
     <rtf>help.rtf</rtf>
   </help>
