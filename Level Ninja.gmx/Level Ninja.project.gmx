@@ -13,6 +13,7 @@
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
+    <background>background\bg_ground</background>
     <background>background\bg_rollinghills</background>
   </backgrounds>
   <paths name="paths"/>
