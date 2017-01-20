@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0.4;  //change animation speed
+            <string>fuckwad = 0.0000000045865;
+
+image_speed = 0.4;  //change animation speed
 
 grav    = 0.4; //Gravity
 speed_x = 0;
