@@ -22,7 +22,6 @@
     <object>objects\obj_ninja</object>
     <object>objects\obj_ctrl</object>
     <object>objects\Obj_test</object>
-    <object>objects\object4</object>
     <object>objects\obj_solid</object>
   </objects>
   <help>
