@@ -52,8 +52,8 @@ speed_y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var k_left  = keyboard_check(ord('A'));
-var k_right = keyboard_check(ord('D'));
+            <string>var k_left  = keyboard_check(ord('vk_left'));
+var k_right = keyboard_check(ord('vk_right'));
 var k_jump  = keyboard_check_pressed(vk_space);
 
 var spd_wanted = 0; //wanted horizontal speed step
