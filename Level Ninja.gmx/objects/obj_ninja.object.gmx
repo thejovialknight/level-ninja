@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0.2;  //change animation speed
+            <string>image_speed = 0.4;  //change animation speed
 
-grav    = 0.2; //Gravity
+grav    = 0.4; //Gravity
 speed_x = 0;
 speed_y = 0;
 </string>
@@ -73,7 +73,7 @@ speed_y += grav; //apply gravity
 
 if(k_jump &amp;&amp; place_meeting(x, y + 1, obj_solid))
 {
-    speed_y = -6;
+    speed_y = -4;
 }
 
 //horizontal collision

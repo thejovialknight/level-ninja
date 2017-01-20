@@ -10,6 +10,7 @@
     <sprite>sprites\spr_ninja_running</sprite>
     <sprite>sprites\spr_enemy1</sprite>
     <sprite>sprites\spr_enemy2</sprite>
+    <sprite>sprites\spr_solid</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
