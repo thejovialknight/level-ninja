@@ -25,14 +25,7 @@
     <object>objects\object4</object>
     <object>objects\obj_solid</object>
   </objects>
-<<<<<<< HEAD
-  <rooms name="rooms">
-    <room>rooms\room0</room>
-    <room>rooms\room1</room>
-  </rooms>
-=======
   <rooms name="rooms"/>
->>>>>>> origin/master
   <help>
     <rtf>help.rtf</rtf>
   </help>
