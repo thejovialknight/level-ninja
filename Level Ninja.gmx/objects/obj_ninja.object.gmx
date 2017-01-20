@@ -97,12 +97,16 @@ if(place_meeting(x, y + speed_y, obj_solid))
     speed_y = 0;
 }
 y += speed_y;
+<<<<<<< HEAD
 
 
 
 
 
 //i am a gay boy
+=======
+//I am writing a comment.
+>>>>>>> origin/master
 </string>
           </argument>
         </arguments>
