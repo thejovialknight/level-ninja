@@ -25,8 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//change animation speed
-image_speed = 0.2;
+            <string>image_speed = 0.2;  //change animation speed
+
+grav    = 0.2; //Gravity
+speed_x = 0;
+speed_y = 0;
 </string>
           </argument>
         </arguments>
