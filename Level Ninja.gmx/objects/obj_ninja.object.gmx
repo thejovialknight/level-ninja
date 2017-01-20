@@ -52,7 +52,52 @@ speed_y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>var k_left  = keyboard_check(ord('A'));
+var k_right = keyboard_check(ord('D'));
+var k_jump  = keyboard_check_pressed(vk_space);
+
+var spd_wanted = 0; //wanted horizontal speed step
+
+if(k_left)
+{
+    spd_wanted -= 3;
+}
+if(k_right)
+{
+    spd_wanted += 3;
+}
+
+speed_x = spd_wanted; //horizontal speed based on the wanted speed
+
+speed_y += grav; //apply gravity
+
+if(k_jump &amp;&amp; place_meeting(x, y + 1, obj_solid))
+{
+    speed_y = -6;
+}
+
+//horizontal collision
+if(place_meeting(x + speed_x, y, obj_solid))
+{
+    while(!place_meeting(x + sign(speed_x), y, obj_solid))
+    {
+        x += sign(speed_x);
+    }
+    speed_x = 0;
+}
+x += speed_x;
+
+//vertical collision
+if(place_meeting(x, y + speed_y, obj_solid))
+{
+    while(!place_meeting(x, y + sign(speed_y), obj_solid))
+    {
+        y += sign(speed_y);
+    }
+    speed_y = 0;
+}
+y += speed_y;
+</string>
           </argument>
         </arguments>
       </action>
