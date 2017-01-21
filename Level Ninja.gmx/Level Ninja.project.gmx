@@ -16,6 +16,7 @@
     <background>background\bg_floor</background>
     <background>background\bg_ground</background>
     <background>background\bg_rollinghills</background>
+    <background>background\bg_rollinghills2</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">

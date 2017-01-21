@@ -25,13 +25,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>fuckwad = 0.0000000045865;
+            <string>//animation
+image_speed = 0.2;  //change animation speed
 
-image_speed = 0.4;  //change animation speed
-
-grav    = 0.4; //Gravity
+//movement
+grav    = 0.2; //Gravity
 speed_x = 0;
 speed_y = 0;
+
+//for mobile device input
+swipe1_x = 0; //x start of swipe
+swipe1_y = 0; //y start of swipe
+swipe2_x = 0; //x end of swipe
+swipe2_y = 0; //y end of swipe
+swipe_time = 0; //duration of swipe counted in frames
+swiped = false; //whether a swipe has just ended. only true for one frame.
 </string>
           </argument>
         </arguments>
@@ -54,40 +62,36 @@ speed_y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var k_left  = keyboard_check(ord('vk_left'));
-var k_right = keyboard_check(ord('vk_right'));
-var k_jump  = keyboard_check_pressed(vk_space);
+            <string>speed_y += grav; //apply gravity
 
-var spd_wanted = 0; //wanted horizontal speed step
-
-if(k_left)
-{
-    spd_wanted -= 3;
-}
-if(k_right)
-{
-    spd_wanted += 3;
+//for mobile device input.
+if(mouse_check_button_pressed(mb_left)) { //check for beginning of swipe
+    swipe1_x = mouse_x;
+    swipe1_y = mouse_y;
 }
 
-speed_x = spd_wanted; //horizontal speed based on the wanted speed
 
-speed_y += grav; //apply gravity
-
-if(k_jump &amp;&amp; place_meeting(x, y + 1, obj_solid))
-{
-    speed_y = -4;
+if(mouse_check_button(mb_left)) { //update swipe_time while screen is being pressed
+    swipe_time += 1
 }
 
-//horizontal collision
-if(place_meeting(x + speed_x, y, obj_solid))
-{
-    while(!place_meeting(x + sign(speed_x), y, obj_solid))
-    {
-        x += sign(speed_x);
+
+if(mouse_check_button_released(mb_left)) { //check for end of swipe
+    swipe2_x = mouse_x;
+    swipe2_y = mouse_y;
+    swiped = true;
+}
+
+//calculate swipe speed based on time and positions
+if(swiped &amp;&amp; place_meeting(x, y + 1, obj_solid)) {
+    if(swipe1_y - swipe2_y &gt; 0) { //if swiped up
+        speed_y -= ((swipe1_y - swipe2_y)/swipe_time);
+        speed_y = clamp(speed_y, -5, 0); //make sure speed doesn't go below a certain value. otherwise super jump
     }
-    speed_x = 0;
+    
+    swipe_time = 0;
+    swiped = false;
 }
-x += speed_x;
 
 //vertical collision
 if(place_meeting(x, y + speed_y, obj_solid))
@@ -98,13 +102,8 @@ if(place_meeting(x, y + speed_y, obj_solid))
     }
     speed_y = 0;
 }
-y += speed_y;
 
-
-
-
-
-//i am a gay boy
+y += speed_y; //update speed
 </string>
           </argument>
         </arguments>
