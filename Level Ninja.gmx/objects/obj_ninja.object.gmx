@@ -172,7 +172,6 @@ if(speed_y = 0 &amp;&amp; grounded) {
 }
 
 draw_sprite(sprite, image_index, x, y);
-draw_text(4,4,grounded);
 </string>
           </argument>
         </arguments>
