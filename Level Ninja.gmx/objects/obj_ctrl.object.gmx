@@ -64,7 +64,7 @@ background_x[3] = floor(bg3_sub_x);
 background_x[4] = floor(bg4_sub_x);
 
 //acceleration of scrolling
-global.base_speed -= 0.005
+//global.base_speed -= 0.005
 
 //enemy spawning
 spawn = irandom(300);
