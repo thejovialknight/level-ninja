@@ -12,11 +12,15 @@
     <sprite>sprites\spr_enemy1</sprite>
     <sprite>sprites\spr_enemy2</sprite>
     <sprite>sprites\spr_solid</sprite>
+    <sprite>sprites\spr_ground</sprite>
+    <sprite>sprites\spr_rollinghills1</sprite>
+    <sprite>sprites\spr_rollinghills2</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
     <background>background\bg_ground</background>
     <background>background\bg_rollinghills</background>
+    <background>background\bg_rollinghills23</background>
     <background>background\bg_rollinghills2</background>
   </backgrounds>
   <paths name="paths"/>
@@ -26,6 +30,9 @@
     <object>objects\Obj_test</object>
     <object>objects\obj_solid</object>
     <object>objects\obj_enemy1</object>
+    <object>objects\obj_ground</object>
+    <object>objects\obj_parallax1</object>
+    <object>objects\obj_parallax2</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_level</room>
