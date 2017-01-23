@@ -30,9 +30,6 @@
     <object>objects\Obj_test</object>
     <object>objects\obj_solid</object>
     <object>objects\obj_enemy1</object>
-    <object>objects\obj_ground</object>
-    <object>objects\obj_parallax1</object>
-    <object>objects\obj_parallax2</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_level</room>
