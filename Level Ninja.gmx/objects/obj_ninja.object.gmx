@@ -25,7 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//animation
+            <string>//leveling system
+global.player_level = 1; //current player level
+player_exp = 0; //current player experience
+expToLevel = 100; //exp required for next level
+
+//player info
+player_hp = global.player_level*2;
+
+//state information
+state = "running";
+
+//animation
 image_speed = 0.2;  //change animation speed
 anim_jump = false;
 grounded = true;
@@ -42,12 +53,111 @@ swipe2_x = 0; //x end of swipe
 swipe2_y = 0; //y end of swipe
 swipe_time = 0; //duration of swipe counted in frames
 swiped = false; //whether a swipe has just ended. only true for one frame.
+
+//define enemy types
+enemies[0] = obj_enemy1;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Player Control</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//combat
+hit = instance_place(x, y, obj_enemy1); //reference instance collided with
+if(hit != noone &amp;&amp; hit.active = true) {
+    switch (state) {
+        case "slashing": //if slashing
+            if(hit.level &gt; global.player_level) { //if enemy level is higher than yours
+                    player_hp -= hit.level - global.player_level;
+                    hit.active = false;
+            }
+            
+            if(hit.level &lt;= global.player_level) { //if enemy level is lower than yours
+                player_exp += hit.level*25; //give experience
+                with(hit) {
+                  instance_destroy(); //destroy enemy object
+                }
+            }
+            break;
+        case "jumping": case "running":
+            player_hp -= hit.level;
+            hit.active = false;
+            break;
+    }
+}
+
+//level system
+if(player_exp &gt;= expToLevel) {
+    global.player_level += 1;
+    player_exp = 0;
+    expToLevel = expToLevel*2
+    player_hp = global.player_level*2;
+}
+
+//assess player
+if(player_hp &lt;= 0) {
+    game_restart();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Movement</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -90,18 +200,20 @@ if(swiped) {
         grounded = false;
         speed_y -= ((swipe1_y - swipe2_y)/swipe_time);
         speed_y = clamp(speed_y, -5, 0); //make sure speed doesn't go below a certain value. otherwise super jump
+        state = "jumping";
     }
     
     if(swipe1_y - swipe2_y &lt; 0) { //if swiped down and not grounded
         speed_y -= ((swipe1_y - swipe2_y)/swipe_time);
         speed_y = clamp(speed_y, 0, 5); //make sure speed doesn't go below a certain value. otherwise super jump
+        state = "slashing";
     }
     
     swipe_time = 0;
     swiped = false;
 }
 
-//vertical collision
+//vertical ground collision
 if(place_meeting(x, y + speed_y, obj_solid))
 {
     while(!place_meeting(x, y + sign(speed_y), obj_solid))
@@ -110,10 +222,71 @@ if(place_meeting(x, y + speed_y, obj_solid))
     }
     speed_y = 0;
     grounded = true;
+    state = "running";
 }
 
 y += speed_y; //update speed
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>World Control</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>scr_control</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -172,6 +345,11 @@ if(speed_y = 0 &amp;&amp; grounded) {
 }
 
 draw_sprite(sprite, image_index, x, y);
+
+//draw info text
+draw_set_halign(fa_left);
+draw_set_font(fnt_stat);
+draw_text(3, 0, "LVL: " + string(global.player_level) + " - EXP: " + string(player_exp) + "/" + string(expToLevel) + "#HP: " + string(player_hp));
 </string>
           </argument>
         </arguments>

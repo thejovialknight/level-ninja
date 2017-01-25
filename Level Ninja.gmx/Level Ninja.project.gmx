@@ -24,6 +24,12 @@
     <background>background\bg_rollinghills2</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_control.gml</script>
+  </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_stat</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_ninja</object>
     <object>objects\obj_ctrl</object>

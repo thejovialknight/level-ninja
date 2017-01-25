@@ -65,12 +65,6 @@ background_x[4] = floor(bg4_sub_x);
 
 //acceleration of scrolling
 //global.base_speed -= 0.005
-
-//enemy spawning
-spawn = irandom(300);
-if(spawn = 1) { //random chance out of 300 every frame
-    instance_create(room_width + 16, 93, obj_enemy1);
-}
 </string>
           </argument>
         </arguments>
